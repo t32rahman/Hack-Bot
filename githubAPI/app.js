@@ -20,9 +20,9 @@ app.get('/',(req,res)=>{
     res.send('Connected to github api')
 });
 
-db.on('connect',()=>{
+db.on('connect',(client)=>{
  console.log('connected to db');
-
+    createTable(client)
 });
 
 /**
@@ -41,6 +41,13 @@ async function createTable(client){
 
         const {rows} = await client.query(TABLE);
         console.log(rows);
+        const QUERY = `SELECT owner,repo from public.repos WHERE id = 1`
+        const dat = await client.query(QUERY);
+        if(dat.length == 0){
+            const INSERT = `INSERT INTO public.repos (id,owner,repo) VALUES (DEFAULT,'${owner}','${repo}')
+            `
+           await client.query(INSERT)
+        }
     }catch(error){
         console.log(error)
     }finally{
