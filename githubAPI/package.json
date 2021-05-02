@@ -1,0 +1,17 @@
+{
+  "name": "github_api",
+  "version": "1.0.0",
+  "description": "end points for using github api",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Alick Lazare",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "pg": "^8.6.0"
+  }
+}
